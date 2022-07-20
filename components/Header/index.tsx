@@ -12,9 +12,8 @@ import {
     IconButton,
     Menu,
     MenuItem,
+    styled,
 } from '@mui/material'
-
-import { styled } from '@mui/material/styles';
 
 const StickBar = styled(AppBar)(({ theme }) => ({
  backgroundColor:'transparent',
