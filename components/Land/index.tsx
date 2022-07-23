@@ -3,10 +3,11 @@ import type { NextPage } from 'next'
 import { styled } from '@mui/material/styles';
 
 import { Container } from '@mui/system';
-import { Box, Button, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, Grid, Stack, Typography, Link } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 import { getList } from '../../services/Main';
+// import Link from 'next/link';
 
 const Root = styled('div')(({ theme }) => ({
     padding: theme.spacing(1),
@@ -114,7 +115,9 @@ const Land:NextPage = () => {
                             height={{md:'38px', sm:'28px', xs:'24px'}} margin='24px'>
                                 
                             {companies.map((item, index) => (
-                                <img src={item.image} height='100%' key={index} />
+                                <Link href={ "https://" + item.link } key={index} >
+                                <img src={item.image} height='100%'/>
+                                </Link>
                             ))}
                             </Stack>
                         </Box>
