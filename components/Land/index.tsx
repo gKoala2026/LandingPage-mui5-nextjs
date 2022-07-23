@@ -4,6 +4,9 @@ import { styled } from '@mui/material/styles';
 
 import { Container } from '@mui/system';
 import { Box, Button, Grid, Stack, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+
+import { getList } from '../../services/Main';
 
 const Root = styled('div')(({ theme }) => ({
     padding: theme.spacing(1),
@@ -38,6 +41,19 @@ const testimonialItem = [
 ];
 
 const Land:NextPage = () => {
+    type ICompanies = {
+        image: string,
+        title: string,
+        link: string
+    }
+    const [companies, setCompanies] = useState(Array<ICompanies>)
+
+    useEffect(() => {
+        getList((res:any) => {
+            setCompanies(res)
+        })
+    }, [])
+
     return (
         <Root>
             <Container  sx={{ position:'relative' }} >
@@ -96,10 +112,10 @@ const Land:NextPage = () => {
                             direction='row' 
                             spacing={{md:15,sm:10, xs:5}} 
                             height={{md:'38px', sm:'28px', xs:'24px'}} margin='24px'>
-                                <img src='Company logo.png' height='100%' />
-                                <img src='Company logo (1).png' height='100%' />
-                                <img src='Company logo (2).png' height='100%' />
-                                <img src='Company logo (3).png' height='100%' />
+                                
+                            {companies.map((item, index) => (
+                                <img src={item.image} height='100%' key={index} />
+                            ))}
                             </Stack>
                         </Box>
                     </CenteralGrid>
